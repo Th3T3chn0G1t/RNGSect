@@ -1,0 +1,6 @@
+*.o
+*.out
+*.bin
+os_sector.asm
+
+.vscode/
