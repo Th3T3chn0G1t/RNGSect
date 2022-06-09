@@ -16,4 +16,6 @@ I decided on the less thorough but still effective approach of going through the
 
 The result of my primary endevour was the `nops.txt` file enclosed. This file represents all bit patterns of opcodes whose effects cannot crash the execution, and ferry the IP toward an eventual `hlt`. Then it was simply a case of converting these bit patterns and wildcards into a ludicrous switch statement intermixed with bitwise+logical ops and setting the stride of each instruction (Thank you VLE, very cool).
 
-Then it is simply a case of generating a random sector, checking offsets and jumping by stride, checking for boot magic and that the last instruction after the effective-nops was `hlt`. Much to my joy, it worked the first time I ran it
+Then it is simply a case of generating a random sector, checking offsets and jumping by stride, checking for boot magic and that the last instruction after the effective-nops was `hlt`. Much to my joy, it worked the first time I ran it and produced the output displayed at the top of this file! With a few runs' experience it seems to work fine, though I would be remiss to consider a program which relies on random input to be flawless.
+
+If you want to try yourself, all you need to do is run `make` and the program will be compiled, perform generation and create a disassembly, and run the result with qemu. In my experience the whole process takes around ~30 seconds on average (obviously the nature of RNG means this can fluctuate drastically but 30 seems to be a ballpark average) on my 2012 macbook - your mileage may vary.
