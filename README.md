@@ -14,4 +14,6 @@ Marca elected to go down the route of "simulation" - not quite writing an 8086 e
 
 I decided on the less thorough but still effective approach of going through the 8086's manual and finding opcodes which could not error out. This involved understanding which parts of encodings represented memory vs. register operations and checking the stride of each encoding (i.e. how many 1-byte fetches it would trigger on a real CPU).
 
-The result of my primary endevour was the `nops.txt` file enclosed. This file represents all bit patterns of opcodes whose effects cannot crash the execution, and ferry the IP toward an eventual `hlt`. Then it was simply a case of converting these bit patterns and wildcards into a ludicrous switch statement intermixed with bitwise+logical ops and 
+The result of my primary endevour was the `nops.txt` file enclosed. This file represents all bit patterns of opcodes whose effects cannot crash the execution, and ferry the IP toward an eventual `hlt`. Then it was simply a case of converting these bit patterns and wildcards into a ludicrous switch statement intermixed with bitwise+logical ops and setting the stride of each instruction (Thank you VLE, very cool).
+
+Then it is simply a case of generating a random sector, checking offsets and jumping by stride, checking for boot magic and that the last instruction after the effective-nops was `hlt`. Much to my joy, it worked the first time I ran it
