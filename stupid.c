@@ -137,7 +137,7 @@ bool check_sector(const uint8_t* const restrict buff) {
         bool valid = check_offset(buff, i, &is_halt, &stride);
         if(!valid) return false;
     }
-    return true;
+    return is_halt;
 }
 
 int main(void) {
